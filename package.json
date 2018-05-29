@@ -1,15 +1,19 @@
 {
   "name": "odata-v4-filter-parser",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Parse OData $filter syntax into MongoDB syntax in JS",
   "main": "index.js",
   "scripts": {
-    "build": "pegjs -o index.js ./src/parser.pegjs",
+    "build-peg": "pegjs -o ./dist/index.js ./src/parser.pegjs",
+    "build-babel": "babel ./dist/index.js --out-file ./index.js",
+    "build": "yarn run build-peg & yarn run build-babel",
     "test": "jest"
   },
   "author": "ljqx",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "jest": "^23.0.1",
     "pegjs": "^0.10.0"
   }
