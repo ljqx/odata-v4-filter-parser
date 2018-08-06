@@ -24,17 +24,7 @@
 
   function makePropertyWithValue(property, value) {
     if (Array.isArray(property)) {
-      const [first, ...rest] = property;
-
-      if (rest.length) {
-        return {
-          [first]: makePropertyWithValue(rest, value),
-        };
-      }
-
-      return {
-        [first]: value,
-      };
+      return { [property.join('.')]: value };
     }
 
     return {

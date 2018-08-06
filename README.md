@@ -41,10 +41,8 @@ results in
       }
     },
     {
-      "score": {
-        "overall": {
-          "$gt": 123
-        }
+      "score.overall": {
+        "$gt": 123
       }
     },
     {

@@ -24,12 +24,11 @@ test('parse enum', () => {
  });
 });
 
+// https://docs.mongodb.com/manual/tutorial/query-embedded-documents/#specify-equality-match-on-a-nested-field
 test('parse deep property', () => {
   expect(parse("score/overall gt 123")).toEqual({
-    "score": {
-       "overall": {
-          "$gt": 123
-       }
+    "score.overall": {
+      "$gt": 123
     }
  });
 });
@@ -104,10 +103,8 @@ test('parse combined filter', () => {
           }
        },
        {
-          "score": {
-             "overall": {
-                "$gt": 123
-             }
+          "score.overall": {
+            "$gt": 123
           }
        },
        {
