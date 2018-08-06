@@ -10,7 +10,7 @@ See
 ```js
 const { parse } = require('odata-v4-filter-parser');
 
-parse("(status eq Enum.Status'ACTIVE' or status eq Enum.Status'DELETED') and id eq 11 and contains(text, 'aa') and score/overall gt 123");
+parse("(status eq Enum.Status'ACTIVE' or status eq Enum.Status'DELETED') and id eq 11 and contains(text, 'aa') and (score/overall gt 123) and isof(data, Model.DevcieData)");
 ```
 results in
 ```json
@@ -45,6 +45,11 @@ results in
         "overall": {
           "$gt": 123
         }
+      }
+    },
+    {
+      "data": {
+        "$type": "Model.DevcieData"
       }
     }
   ]

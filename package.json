@@ -1,6 +1,6 @@
 {
   "name": "odata-v4-filter-parser",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Parse OData $filter syntax into MongoDB syntax in JS",
   "main": "index.js",
   "repository": "ljqx/odata-v4-filter-parser",

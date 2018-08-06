@@ -68,8 +68,16 @@ test('parse or', () => {
  });
 });
 
+test('parse isof', () => {
+  expect(parse("isof(data, Model.DevcieData)")).toEqual({
+    "data": {
+      "$type": "Model.DevcieData"
+    }
+ });
+});
+
 test('parse combined filter', () => {
-  expect(parse("(status eq Enum.Status'ACTIVE' or status eq Enum.Status'DELETED') and id eq 11 and contains(text, 'aa') and score/overall gt 123")).toEqual({
+  expect(parse("(status eq Enum.Status'ACTIVE' or status eq Enum.Status'DELETED') and id eq 11 and contains(text, 'aa') and (score/overall gt 123) and isof(data, Model.DevcieData)")).toEqual({
     "$and": [
        {
           "$or": [
@@ -101,6 +109,11 @@ test('parse combined filter', () => {
                 "$gt": 123
              }
           }
+       },
+       {
+         "data": {
+           "$type": "Model.DevcieData"
+         }
        }
     ]
  });

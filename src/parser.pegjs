@@ -317,7 +317,9 @@ negateExpr = "-" BWS commonExpr
 
 notExpr = "not" RWS boolCommonExpr
 
-isofExpr = "isof" OPEN BWS ( commonExpr BWS COMMA BWS )? qualifiedTypeName BWS CLOSE
+isofExpr = "isof" OPEN BWS expr:(
+            expr:commonExpr BWS COMMA BWS { return expr; }
+          )? type:qualifiedTypeName BWS CLOSE { return expr ? { [expr]: { $type: type } } : { $type: type }; }
 castExpr = "cast" OPEN BWS ( commonExpr BWS COMMA BWS )? qualifiedTypeName BWS CLOSE
 
 // 5. JSON format for function parameters
